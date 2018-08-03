@@ -19,9 +19,16 @@ import java.awt.FontFormatException;
 
 public class Console {
 
+	// Setup the UI elements
 	private JFrame frame;
-	private JTextField textField;
-
+	private JLabel lblName = new JLabel();
+	private JLabel lblHp = new JLabel();
+	private JLabel lblMp = new JLabel();
+	private JLabel lblGold = new JLabel();
+	private JTextArea txtConsole = new JTextArea(); // This is in 'console' for the game
+	private JTextField txtInput = new JTextField(); // This is the 'input' for the game
+	private JLabel lblChevron = new JLabel("\u00BB");
+	
 	/**
 	 * Launch the application & Set the sizes.
 	 */
@@ -30,8 +37,8 @@ public class Console {
 			public void run() {
 				try {
 					Console window = new Console();
-					window.frame.setSize(640, 480);
-					window.frame.setResizable(false);
+					window.frame.setSize(640, 480); // Set a static size
+					window.frame.setResizable(false); // Remove the resize option
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,6 +57,16 @@ public class Console {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		// Setup the frame
+		frame = new JFrame();
+		frame.setVisible(true);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.getContentPane().setLayout(null);
+		frame.setBackground(Color.BLACK);
+		frame.setResizable(false);
+		frame.setTitle("Black Magic RPG");
+		frame.setBounds(100, 100, 640, 480);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Setup fonts
 		InputStream fontStream = Console.class.getResourceAsStream("Fonts/ShareTechMono-Regular.ttf");
 		Font font;
@@ -61,85 +78,70 @@ public class Console {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		frame = new JFrame();
-		frame.setVisible(true);
-		frame.getContentPane().setBackground(Color.BLACK);
-		frame.getContentPane().setLayout(null);
-		JLabel lblName = new JLabel("Name: Bob");
+		// Set the name label attributes
 		lblName.setForeground(Color.WHITE);
 		lblName.setBackground(Color.BLACK);
 		lblName.setBounds(10, 12, 135, 15);
 		lblName.setFont(gameFont);
-		frame.getContentPane().add(lblName);
-		JLabel lblGold = new JLabel("Gold: 10g");
+		// Set the HP label attributes
+		lblHp.setForeground(Color.RED);
+		lblHp.setBackground(Color.BLACK);
+		lblHp.setBounds(175, 12, 120, 15);
+		lblHp.setFont(gameFont);
+		// Set the MP label attributes
+		lblMp.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblMp.setForeground(Color.CYAN);
+		lblMp.setBackground(Color.BLACK);
+		lblMp.setBounds(358, 12, 120, 15);
+		lblMp.setFont(gameFont);
+		// Set the gold label attributes
 		lblGold.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGold.setForeground(new Color(204, 204, 0));
 		lblGold.setBackground(Color.BLACK);
 		lblGold.setBounds(504, 12, 120, 15);
 		lblGold.setFont(gameFont);
-		frame.getContentPane().add(lblGold);
-		
-		JLabel lblHp = new JLabel("HP: 100/100");
-		lblHp.setForeground(Color.RED);
-		lblHp.setBackground(Color.BLACK);
-		lblHp.setBounds(175, 12, 120, 15);
-		lblHp.setFont(gameFont);
-		frame.getContentPane().add(lblHp);
-		
-		JLabel lblMp = new JLabel("MP: 100/100");
-		lblMp.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblMp.setForeground(new Color(0, 102, 255));
-		lblMp.setBackground(Color.BLACK);
-		lblMp.setBounds(358, 12, 120, 15);
-		lblMp.setFont(gameFont);
-		frame.getContentPane().add(lblMp);
-		
-		JTextArea txtConsole = new JTextArea();
-		txtConsole.setText("Welcome to the world of Black Magic RPG");
+		// Set the games console (JTextArea) attributes
 		txtConsole.setForeground(Color.WHITE);
 		txtConsole.setBackground(Color.BLACK);
 		txtConsole.setLineWrap(true);
 		txtConsole.setEditable(false);
 		txtConsole.setBounds(26, 271, 598, 135);
 		txtConsole.setFont(gameFont);
-		frame.getContentPane().add(txtConsole);
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		// Set the games input (JTextField) attributes
+		txtInput.setEditable(true);
+		txtInput.setForeground(Color.WHITE);
+		txtInput.setBackground(Color.BLACK);
+		txtInput.setBounds(26, 423, 598, 19);
+		txtInput.setFont(gameFont);
+		txtInput.setColumns(10);
+		// Set up a listener to the games input (JTextField) so that hitting enter can move the game along
+		txtInput.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				switch(e.getKeyChar()) {
 				case KeyEvent.VK_ENTER:
-					txtConsole.append(textField.getText());
-					textField.setText(null);
+					txtConsole.append(txtInput.getText());
+					txtInput.setText(null);
 					break;
 				default:
 					break;
 				}
-				if(e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_TAB) {
-					textField.requestFocusInWindow();
-				}
 			}
 		});
-		textField.setEditable(true);
-		textField.setForeground(Color.WHITE);
-		textField.setBackground(Color.BLACK);
-		textField.setBounds(26, 423, 598, 19);
-		textField.setFont(gameFont);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JLabel label = new JLabel("\u00BB");
-		label.setForeground(Color.WHITE);
-		label.setBackground(Color.BLACK);
-		label.setFont(new Font("Dialog", Font.BOLD, 24));
-		label.setBounds(10, 417, 28, 24);
-		frame.getContentPane().add(label);
-		frame.setBackground(Color.BLACK);
-		frame.setResizable(false);
-		frame.setTitle("Black Magic RPG");
-		frame.setBounds(100, 100, 640, 480);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		textField.requestFocusInWindow();
-		frame.setFocusTraversalKeysEnabled(false);
+		// Set up the bit of text beside the input (>>) 
+		lblChevron.setForeground(Color.WHITE);
+		lblChevron.setBackground(Color.BLACK);
+		lblChevron.setFont(new Font("Dialog", Font.PLAIN, 24));
+		lblChevron.setBounds(10, 417, 28, 24);
+		// Add the UI elements to the frame
+		frame.getContentPane().add(lblName);
+		frame.getContentPane().add(lblHp);
+		frame.getContentPane().add(lblMp);
+		frame.getContentPane().add(lblGold);
+		frame.getContentPane().add(txtConsole);
+		frame.getContentPane().add(txtInput);
+		frame.getContentPane().add(lblChevron);
+		// Request focus to make sure the games input (JTextField) is focused at launch
+		txtInput.requestFocusInWindow();
 	}
 }
