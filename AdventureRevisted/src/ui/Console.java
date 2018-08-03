@@ -68,21 +68,21 @@ public class Console {
 		JLabel lblName = new JLabel("Name: Bob");
 		lblName.setForeground(Color.WHITE);
 		lblName.setBackground(Color.BLACK);
-		lblName.setBounds(12, 12, 135, 15);
+		lblName.setBounds(10, 12, 135, 15);
 		lblName.setFont(gameFont);
 		frame.getContentPane().add(lblName);
 		JLabel lblGold = new JLabel("Gold: 10g");
 		lblGold.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGold.setForeground(new Color(204, 204, 0));
 		lblGold.setBackground(Color.BLACK);
-		lblGold.setBounds(508, 12, 120, 15);
+		lblGold.setBounds(504, 12, 120, 15);
 		lblGold.setFont(gameFont);
 		frame.getContentPane().add(lblGold);
 		
 		JLabel lblHp = new JLabel("HP: 100/100");
 		lblHp.setForeground(Color.RED);
 		lblHp.setBackground(Color.BLACK);
-		lblHp.setBounds(178, 12, 120, 15);
+		lblHp.setBounds(175, 12, 120, 15);
 		lblHp.setFont(gameFont);
 		frame.getContentPane().add(lblHp);
 		
@@ -90,7 +90,7 @@ public class Console {
 		lblMp.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMp.setForeground(new Color(0, 102, 255));
 		lblMp.setBackground(Color.BLACK);
-		lblMp.setBounds(340, 12, 120, 15);
+		lblMp.setBounds(358, 12, 120, 15);
 		lblMp.setFont(gameFont);
 		frame.getContentPane().add(lblMp);
 		
@@ -100,7 +100,7 @@ public class Console {
 		txtConsole.setBackground(Color.BLACK);
 		txtConsole.setLineWrap(true);
 		txtConsole.setEditable(false);
-		txtConsole.setBounds(40, 271, 563, 135);
+		txtConsole.setBounds(26, 271, 598, 135);
 		txtConsole.setFont(gameFont);
 		frame.getContentPane().add(txtConsole);
 		textField = new JTextField();
@@ -123,16 +123,16 @@ public class Console {
 		textField.setEditable(true);
 		textField.setForeground(Color.WHITE);
 		textField.setBackground(Color.BLACK);
-		textField.setBounds(59, 423, 544, 19);
+		textField.setBounds(26, 423, 598, 19);
 		textField.setFont(gameFont);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel label = new JLabel("»");
+		JLabel label = new JLabel("\u00BB");
 		label.setForeground(Color.WHITE);
 		label.setBackground(Color.BLACK);
 		label.setFont(new Font("Dialog", Font.BOLD, 24));
-		label.setBounds(34, 418, 28, 24);
+		label.setBounds(10, 417, 28, 24);
 		frame.getContentPane().add(label);
 		frame.setBackground(Color.BLACK);
 		frame.setResizable(false);
