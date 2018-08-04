@@ -154,8 +154,8 @@ public class Console {
 			public void keyTyped(KeyEvent e) {
 				switch(e.getKeyChar()) {
 				case KeyEvent.VK_ENTER:
-					txtConsole.append(txtInput.getText());
-					txtInput.setText(null);
+					gameLogic.handleInput(txtInput.getText());
+					txtInput.setText("");
 					break;
 				default:
 					break;

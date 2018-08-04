@@ -30,10 +30,12 @@ public class GameText {
 //				}
 				String[] gameTextSplit = line.split("\\n");
 				for (String part : gameTextSplit) {
-		            if(!part.contains("#"))
+		            if(!part.contains("#")) {
 		            	lineToCopy+=part;
+		            	lineToCopy+="\n";
+		            }
 		            if(part.contains("@")) {
-						lineToCopy = lineToCopy.substring(0, lineToCopy.length()-1);
+						lineToCopy = lineToCopy.substring(0, lineToCopy.length()-2);
 						gameTextAsList.add(lineToCopy);
 		            }
 		        }
