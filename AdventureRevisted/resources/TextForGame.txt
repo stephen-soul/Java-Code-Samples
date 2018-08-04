@@ -1,5 +1,14 @@
-# Intro
-Welcome to Black Magic RPG.
-(1) New
-(2) Exit
+# Main Menu 
+Welcome to Black Magic RPG. Would you like to...
+*
+(1) New Game
+*
+(2) Exit Game
+@
+# Intro text
+Currently, the year is 856. Humans desire and greed throughout history
+ is the reason that most of the world is encompassed in evil and
+ corruption rules above all else. The fighting this time is
+ mostly between the royalty in the south and the religion in the
+ north, but the fighting has spread like a disease.
 @

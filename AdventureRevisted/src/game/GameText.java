@@ -22,21 +22,16 @@ public class GameText {
 			String line = "";
 			String lineToCopy = "";
 			do {
-//				if (!line.contains("#"))
-//					lineToCopy+=line;
-//				if (line.contains("@")) {
-//					lineToCopy = lineToCopy.substring(0, lineToCopy.length()-1);
-//					gameTextAsList.add(lineToCopy);
-//				}
 				String[] gameTextSplit = line.split("\\n");
 				for (String part : gameTextSplit) {
-		            if(!part.contains("#")) {
+		            if(!part.contains("#") && !part.contains("*"))
 		            	lineToCopy+=part;
+		            if(part.contains("*"))
 		            	lineToCopy+="\n";
-		            }
 		            if(part.contains("@")) {
-						lineToCopy = lineToCopy.substring(0, lineToCopy.length()-2);
+						lineToCopy = lineToCopy.substring(0, lineToCopy.length()-1);
 						gameTextAsList.add(lineToCopy);
+						lineToCopy = "";
 		            }
 		        }
 			} while ((line = gameTextBuffer.readLine()) != null);

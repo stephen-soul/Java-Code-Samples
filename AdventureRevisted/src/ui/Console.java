@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import javax.swing.JScrollPane;
 
 public class Console {
 
@@ -37,6 +38,7 @@ public class Console {
 	private JTextField txtInput = new JTextField(); // This is the 'input' for the game
 	private JLabel lblChevron = new JLabel(); // This is the >> that's beside the input
 	private final GameLogic gameLogic = new GameLogic(this);
+	private final JScrollPane scrollPane = new JScrollPane();
 
 	/**
 	 * Launch the application & Set the sizes.
@@ -118,13 +120,6 @@ public class Console {
 		lblGold.setBackground(Color.BLACK);
 		lblGold.setBounds(504, 12, 120, 15);
 		lblGold.setFont(gameFont);
-		// Set the games console (JTextArea) attributes
-		txtConsole.setForeground(Color.WHITE);
-		txtConsole.setBackground(Color.BLACK);
-		txtConsole.setLineWrap(true);
-		txtConsole.setEditable(false);
-		txtConsole.setBounds(26, 271, 598, 135);
-		txtConsole.setFont(gameFont);
 		// Set the games input (JTextField) attributes
 		txtInput.setEditable(true);
 		txtInput.setForeground(Color.WHITE);
@@ -143,7 +138,17 @@ public class Console {
 		frame.getContentPane().add(lblHp);
 		frame.getContentPane().add(lblMp);
 		frame.getContentPane().add(lblGold);
-		frame.getContentPane().add(txtConsole);
+		scrollPane.setBounds(26, 271, 598, 135);
+		
+		frame.getContentPane().add(scrollPane);
+		scrollPane.setViewportView(txtConsole);
+		txtConsole.setWrapStyleWord(true);
+		// Set the games console (JTextArea) attributes
+		txtConsole.setForeground(Color.WHITE);
+		txtConsole.setBackground(Color.BLACK);
+		txtConsole.setLineWrap(true);
+		txtConsole.setEditable(false);
+		txtConsole.setFont(gameFont);
 		frame.getContentPane().add(txtInput);
 		frame.getContentPane().add(lblChevron);
 		// Request focus to make sure the games input (JTextField) is focused at launch
@@ -164,7 +169,17 @@ public class Console {
 		});
 	}
 	
+	/**
+	 * Function to update the UI through text that's passed to the function
+	 * @param text
+	 * Text to pass to the UI
+	 */
 	public void updateConsole(String text) {
-		txtConsole.append(text);
+		if(text.equals("quit"))
+			System.exit(0);
+		if(text.equals("cls"))
+			txtConsole.setText("");
+		else
+			txtConsole.append(text);
 	}
 }
