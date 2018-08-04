@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import game.GameLogic;
 import game.GameText;
 
 import javax.swing.JTextArea;
@@ -35,7 +36,8 @@ public class Console {
 	private JTextArea txtConsole = new JTextArea(); // This is in 'console' for the game
 	private JTextField txtInput = new JTextField(); // This is the 'input' for the game
 	private JLabel lblChevron = new JLabel(); // This is the >> that's beside the input
-	
+	private final GameLogic gameLogic = new GameLogic(this);
+
 	/**
 	 * Launch the application & Set the sizes.
 	 */
@@ -65,8 +67,7 @@ public class Console {
 	 */
 	private void initialize() {
 		// Setup the frame
-		GameText GText = new GameText();
-		GText.readGameText();
+		gameLogic.initialize();
 		frame = new JFrame();
 		frame.setVisible(true);
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -163,5 +164,7 @@ public class Console {
 		});
 	}
 	
-	
+	public void updateConsole(String text) {
+		txtConsole.append(text);
+	}
 }
