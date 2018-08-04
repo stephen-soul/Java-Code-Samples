@@ -1,14 +1,21 @@
+/**
+ * CLASS TO HANDLE THE UI FOR THE GAME
+ * STEPHEN FETINKO 2018
+ */
+
 package ui;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import game.GameText;
+
 import javax.swing.JTextArea;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -27,7 +34,7 @@ public class Console {
 	private JLabel lblGold = new JLabel();
 	private JTextArea txtConsole = new JTextArea(); // This is in 'console' for the game
 	private JTextField txtInput = new JTextField(); // This is the 'input' for the game
-	private JLabel lblChevron = new JLabel("\u00BB");
+	private JLabel lblChevron = new JLabel(); // This is the >> that's beside the input
 	
 	/**
 	 * Launch the application & Set the sizes.
@@ -58,6 +65,8 @@ public class Console {
 	 */
 	private void initialize() {
 		// Setup the frame
+		GameText GText = new GameText();
+		GText.readGameText();
 		frame = new JFrame();
 		frame.setVisible(true);
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -67,6 +76,15 @@ public class Console {
 		frame.setTitle("Black Magic RPG");
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Set the frame icon to the one located in resources
+		try {
+		     ClassLoader cl = this.getClass().getClassLoader();
+		     ImageIcon programIcon = new ImageIcon(cl.getResource("logo.png"));
+		     frame.setIconImage(programIcon.getImage());
+		  } catch (Exception e) {
+		     System.out.println("Could not load program icon.");
+		  }
+
 		// Setup fonts
 		InputStream fontStream = Console.class.getResourceAsStream("Fonts/ShareTechMono-Regular.ttf");
 		Font font;
@@ -75,7 +93,6 @@ public class Console {
 			font = Font.createFont(Font.TRUETYPE_FONT, fontStream);
 			gameFont = font.deriveFont(15f);
 		} catch (FontFormatException | IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		// Set the name label attributes
@@ -114,6 +131,22 @@ public class Console {
 		txtInput.setBounds(26, 423, 598, 19);
 		txtInput.setFont(gameFont);
 		txtInput.setColumns(10);
+		// Set up the bit of text beside the input (>>) 
+		lblChevron.setForeground(Color.WHITE);
+		lblChevron.setBackground(Color.BLACK);
+		lblChevron.setFont(new Font("Dialog", Font.PLAIN, 24));
+		lblChevron.setBounds(10, 417, 28, 24);
+		lblChevron.setText("\u00BB");
+		// Add the UI elements to the frame
+		frame.getContentPane().add(lblName);
+		frame.getContentPane().add(lblHp);
+		frame.getContentPane().add(lblMp);
+		frame.getContentPane().add(lblGold);
+		frame.getContentPane().add(txtConsole);
+		frame.getContentPane().add(txtInput);
+		frame.getContentPane().add(lblChevron);
+		// Request focus to make sure the games input (JTextField) is focused at launch
+		txtInput.requestFocusInWindow();
 		// Set up a listener to the games input (JTextField) so that hitting enter can move the game along
 		txtInput.addKeyListener(new KeyAdapter() {
 			@Override
@@ -128,20 +161,7 @@ public class Console {
 				}
 			}
 		});
-		// Set up the bit of text beside the input (>>) 
-		lblChevron.setForeground(Color.WHITE);
-		lblChevron.setBackground(Color.BLACK);
-		lblChevron.setFont(new Font("Dialog", Font.PLAIN, 24));
-		lblChevron.setBounds(10, 417, 28, 24);
-		// Add the UI elements to the frame
-		frame.getContentPane().add(lblName);
-		frame.getContentPane().add(lblHp);
-		frame.getContentPane().add(lblMp);
-		frame.getContentPane().add(lblGold);
-		frame.getContentPane().add(txtConsole);
-		frame.getContentPane().add(txtInput);
-		frame.getContentPane().add(lblChevron);
-		// Request focus to make sure the games input (JTextField) is focused at launch
-		txtInput.requestFocusInWindow();
 	}
+	
+	
 }
