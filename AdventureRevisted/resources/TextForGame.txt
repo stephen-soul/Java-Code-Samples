@@ -18,6 +18,6 @@ So... What should we call you?
 @
 # Ask for the users class
 \
-All right, name , do you have a preference when it comes to defending yourself?
+All right, name, do you have a preference when it comes to defending yourself?
 \
 @

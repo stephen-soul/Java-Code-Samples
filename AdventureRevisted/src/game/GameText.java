@@ -58,6 +58,9 @@ public class GameText {
 	 * Defined player name according to the player
 	 */
 	public void appendPlayerName(String playerName) {
-		Collections.replaceAll(gameTextAsList, "name", playerName);
+		for(int i=0; i < gameTextAsList.size(); i++) {
+			gameTextAsList.set(i, gameTextAsList.get(i).replace("name", playerName));
+		}
+		//Collections.replaceAll(gameTextAsList, "name", playerName);
 	}
 }
