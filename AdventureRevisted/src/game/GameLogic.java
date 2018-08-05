@@ -8,7 +8,7 @@ public class GameLogic {
 	private Console newConsole;
 	private String userInput = ""; // Track the user input
 	private GameState gameState = GameState.GAMESTATE_MAINMENU; // Track game state through ENUMS
-	private GameTextState textState = GameTextState.GAMETEXT_INTRO;
+	private GameTextState textState = GameTextState.GAMETEXT_MAINMENU; // Track the game text state through ENUMS
 	
 	/**
 	 * Function to initialize the UI without making it new
@@ -45,6 +45,8 @@ public class GameLogic {
 			switch(textState) {
 			case GAMETEXT_INTRO:
 				break;
+			case GAMETEXT_GETNAME:
+				getPlayerName();
 			default:
 				break;
 				
@@ -65,23 +67,31 @@ public class GameLogic {
 	private void handleMainMenu() {
 		if(userInput.equals("1") || userInput.equals("new")) {
 			gameState = GameState.GAMESTATE_ALIVE;
+			textState = GameTextState.GAMETEXT_INTRO;
 			clearConsole();
+			updateConsole();
+			textState = GameTextState.GAMETEXT_GETNAME;
 			updateConsole();
 		}
 		else if(userInput.equals("2") || userInput.equals("exit"))
 			newConsole.updateConsole("quit");
 	}
 	
+	/**
+	 * Function to get the players name
+	 */
 	private void getPlayerName() {
-		
+		gameText.appendPlayerName(userInput);
+		textState = GameTextState.GAMETEXT_GETCLASS;
+		updateConsole();
 	}
 	
 	/**
 	 * Function to send game text to the console based on our current state
 	 */
 	private void updateConsole() {
-		// Update the console with the main menu text (getGameText(0))
-		newConsole.updateConsole(gameText.getGameText(gameState.ordinal()));
+		// Update the console with the main menu text - ordinal gets the INT for the ENUM state
+		newConsole.updateConsole(gameText.getGameText(textState.ordinal()));
 	}
 	
 	/**

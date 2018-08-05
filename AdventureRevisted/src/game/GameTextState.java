@@ -1,6 +1,7 @@
 package game;
 
 public enum GameTextState {
+	GAMETEXT_MAINMENU,
 	GAMETEXT_INTRO,
 	GAMETEXT_GETNAME,
 	GAMETEXT_GETCLASS,

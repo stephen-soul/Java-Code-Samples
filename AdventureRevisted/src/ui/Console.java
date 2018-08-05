@@ -7,6 +7,7 @@ package ui;
 
 import java.awt.EventQueue;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -139,7 +140,7 @@ public class Console {
 		frame.getContentPane().add(lblMp);
 		frame.getContentPane().add(lblGold);
 		scrollPane.setBounds(26, 271, 598, 135);
-		
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		frame.getContentPane().add(scrollPane);
 		scrollPane.setViewportView(txtConsole);
 		txtConsole.setWrapStyleWord(true);
