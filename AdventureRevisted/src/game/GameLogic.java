@@ -1,3 +1,7 @@
+/**
+ * LOGIC FOR THE GAME - STEPHEN FETINKO 2018
+ */
+
 package game;
 import ui.Console;
 import game.GameState;
@@ -7,6 +11,9 @@ public class GameLogic {
 	private GameText gameText = new GameText();
 	private Console newConsole;
 	private String userInput = ""; // Track the user input
+	private String playerName = ""; // Keep the player name until the player is made
+	private String playerClass = ""; // Keep the player class until the player is made
+	private boolean playerMade = false; // Boolean to keep track of the player being made or not
 	private GameState gameState = GameState.GAMESTATE_MAINMENU; // Track game state through ENUMS
 	private GameTextState textState = GameTextState.GAMETEXT_MAINMENU; // Track the game text state through ENUMS
 	
@@ -29,7 +36,10 @@ public class GameLogic {
 	 * Function to take game input, compare it, and then call the advance function
 	 */
 	public void handleInput(String input) {
-		userInput = input.toLowerCase();
+		if(textState == GameTextState.GAMETEXT_GETNAME)
+			userInput = input;
+		else
+			userInput = input.toLowerCase();
 		advance();
 	}
 	
@@ -47,16 +57,16 @@ public class GameLogic {
 				break;
 			case GAMETEXT_GETNAME:
 				getPlayerName();
+			case GAMETEXT_GETCLASS:
+				getPlayerClass();
 			default:
-				break;
-				
+				break;	
 			}
 			break;
 		case GAMESTATE_DEAD:
 			break;
 		default:
 			break;
-			
 		}
 		userInput = ""; // Clear the string after the advance function
 	}
@@ -84,6 +94,16 @@ public class GameLogic {
 		gameText.appendPlayerName(userInput);
 		textState = GameTextState.GAMETEXT_GETCLASS;
 		updateConsole();
+	}
+	
+	private void getPlayerClass() {
+		if(userInput.equals("1") || userInput.equals("warrior")) {
+			
+		}
+		if(playerMade) {
+			textState = GameTextState.GAMETEXT_FINALIZEINTRO;
+			updateConsole();
+		}
 	}
 	
 	/**

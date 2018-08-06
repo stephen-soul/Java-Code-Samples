@@ -1,5 +1,5 @@
 /**
- * CLASS TO HANDLE READING GAME DATA FROM A TEXT FILE
+ * CLASS TO HANDLE READING GAME DATA FROM A TEXT FILE AND FILLING AN ARRAY WITH THE INFORMATION
  * STEPHEN FETINKO 2018
  */
 
@@ -26,7 +26,7 @@ public class GameText {
 				for (String part : gameTextSplit) {
 		            if(!part.contains("#") && !part.contains("\\"))
 		            	lineToCopy+=part;
-		            if(part.contains("\\"))
+		            if(part.equals(""))
 		            	lineToCopy+="\n";
 		            if(part.contains("@")) {
 						lineToCopy = lineToCopy.substring(0, lineToCopy.length()-1);
@@ -61,6 +61,5 @@ public class GameText {
 		for(int i=0; i < gameTextAsList.size(); i++) {
 			gameTextAsList.set(i, gameTextAsList.get(i).replace("name", playerName));
 		}
-		//Collections.replaceAll(gameTextAsList, "name", playerName);
 	}
 }

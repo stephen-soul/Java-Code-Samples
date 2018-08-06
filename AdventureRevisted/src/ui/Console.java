@@ -150,6 +150,7 @@ public class Console {
 		txtConsole.setLineWrap(true);
 		txtConsole.setEditable(false);
 		txtConsole.setFont(gameFont);
+		scrollPane.getVerticalScrollBar().setForeground(Color.BLACK);
 		frame.getContentPane().add(txtInput);
 		frame.getContentPane().add(lblChevron);
 		// Request focus to make sure the games input (JTextField) is focused at launch

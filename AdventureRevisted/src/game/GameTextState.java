@@ -1,3 +1,7 @@
+/**
+ * GAME STATES FOR THE IN GAME TEXT. GAME TEXT STATE.
+ */
+
 package game;
 
 public enum GameTextState {
@@ -5,5 +9,6 @@ public enum GameTextState {
 	GAMETEXT_INTRO,
 	GAMETEXT_GETNAME,
 	GAMETEXT_GETCLASS,
+	GAMETEXT_FINALIZEINTRO,
 	GAMETEXT_CHAPTER1_PART1
 }

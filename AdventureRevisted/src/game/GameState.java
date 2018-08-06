@@ -1,3 +1,7 @@
+/**
+ * GAME STATES FOR THE GAME. MAIN MENU, ALIVE (WHILE PLAYING) OR DEAD (WHEN NOT PLAYING)
+ */
+
 package game;
 
 public enum GameState {
