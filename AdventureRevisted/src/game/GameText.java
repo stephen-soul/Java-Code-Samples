@@ -24,7 +24,7 @@ public class GameText {
 			do {
 				String[] gameTextSplit = line.split("\\n");
 				for (String part : gameTextSplit) {
-		            if(!part.contains("#") && !part.contains("\\"))
+		            if(!part.contains("#"))
 		            	lineToCopy+=part;
 		            if(part.equals(""))
 		            	lineToCopy+="\n";
@@ -58,8 +58,12 @@ public class GameText {
 	 * Defined player name according to the player
 	 */
 	public void appendPlayerName(String playerName) {
-		for(int i=0; i < gameTextAsList.size(); i++) {
-			gameTextAsList.set(i, gameTextAsList.get(i).replace("name", playerName));
+		for(int i = 0; i < gameTextAsList.size(); i++) {
+			String s = gameTextAsList.get(i);
+			if(s.contains("name")) gameTextAsList.set(i, s.replaceAll("name", playerName));
 		}
+//		for(int i=0; i < gameTextAsList.size(); i++) {
+//			gameTextAsList.set(i, gameTextAsList.get(i).replace("name", playerName));
+//		}
 	}
 }

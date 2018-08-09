@@ -91,7 +91,11 @@ public class GameLogic {
 	 * Function to get the players name
 	 */
 	private void getPlayerName() {
+		long startTime = System.nanoTime();
 		gameText.appendPlayerName(userInput);
+		long endTime = System.nanoTime();
+		long duration = (endTime - startTime);
+		System.out.println(duration);
 		textState = GameTextState.GAMETEXT_GETCLASS;
 		updateConsole();
 	}

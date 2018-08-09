@@ -88,7 +88,6 @@ public class Console {
 		  } catch (Exception e) {
 		     System.out.println("Could not load program icon.");
 		  }
-
 		// Setup fonts
 		InputStream fontStream = Console.class.getResourceAsStream("Fonts/ShareTechMono-Regular.ttf");
 		Font font;
