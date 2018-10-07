@@ -57,6 +57,7 @@ public class GameWindow {
 					GameWindow window = new GameWindow();
 					window.frame.setVisible(true);
 					window.frame.setSize(640, 480);
+					window.panelMainMenu.setSize(640, 480);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
